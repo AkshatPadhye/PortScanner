@@ -80,3 +80,18 @@ def index():
     scan_time = None
 
     if request.method == 'POST':
+        target = request.form['target']
+
+        results, scan_time = scan_ports(target)
+
+    return render_template(
+        'index.html',
+        results=results,
+        scan_time=scan_time
+    )
+
+
+# ---------------- RUN APP ---------------- #
+
+if __name__ == '__main__':
+    app.run(debug=True)
