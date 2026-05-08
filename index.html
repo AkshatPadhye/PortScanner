@@ -60,6 +60,8 @@
                 {% for port, service, status, risk in results %}
 
                 <tr>
+                    <td>{{ port }}</td>
+                    <td>{{ service }}</td>
                     <td class="{{ status|lower }}">
                         {{ status }}
                     </td>
