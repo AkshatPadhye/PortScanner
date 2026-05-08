@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cyber Security Port Scanner</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="title">
+        Cyber Security Port Scanner
+    </h1>
+
+    <p class="subtitle">
+        Flask + Python Networking Project
+    </p>
+
+    <form method="POST" class="scan-form">
+
+        <input type="text"
+               name="target"
+               placeholder="Enter Target IP Address"
+               required>
+
+        <button type="submit">
+            Start Scan
+        </button>
+
+    </form>
+
+    {% if results %}
+    {% if scan_time %}
+    <p class="scan-time">
+    Scan completed in {{ scan_time }} seconds
+    </p>
+{% endif %}
+
+    <div class="results">
+
+        <h2>Scan Results</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Port</th>
+                    <th>Service</th>
+                     <th>Status</th>
+                     <th>Risk</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for port, service, status, risk in results %}
+
+                <tr>
+                    <td class="{{ status|lower }}">
+                        {{ status }}
+                    </td>
+                    
+                    <td class="{{ risk|lower }}">
+                        {{ risk }}
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+    <div class="footer">
+        Educational Cybersecurity Project
+    </div>
+
+</div>
+
+</body>
+</html>
